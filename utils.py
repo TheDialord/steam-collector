@@ -32,3 +32,12 @@ def add_file_line(path, line):
             return True
     except:
         return None
+
+
+def open_items(path):
+    try:
+        with open(os.path.join(APP_ROOT, path), "r") as f:
+            data = json.load(f)
+            return data['items']
+    except:
+        return None

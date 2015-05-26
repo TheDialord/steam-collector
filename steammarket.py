@@ -1,6 +1,6 @@
 import utils
 LISTINGS_PATH = 'listings.json'
-
+ITEMS_PATH = 'items.json'
 
 def get_listing():
     listing = utils.open_file_line(LISTINGS_PATH)
@@ -15,3 +15,7 @@ def add_listing(listing_id, price_subtotal, price_fee):
         'total': price_subtotal + price_fee,
         'quantity': 1
     })
+
+
+def load_items():
+    return utils.open_items(ITEMS_PATH)
