@@ -32,7 +32,7 @@ def get_listing():
     })
 
 
-@app.route('/add-listing/<int:listing_id><int:price_subtotal>/<int:price_fee>', methods=['GET'])
+@app.route('/add-listing/<int:listing_id>-<int:price_subtotal>*<int:price_fee>', methods=['GET'])
 def add_listing(listing_id, price_subtotal, price_fee):
     result = steammarket.add_listing(listing_id, price_subtotal, price_fee)
 
