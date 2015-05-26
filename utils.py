@@ -6,28 +6,29 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 def open_file_line(path):
     line = None
-    with open(os.path.join(APP_ROOT, path), "r") as f:
-        data = json.load(f)
-        line = data[0]
+    try:
+        with open(os.path.join(APP_ROOT, path), "r") as f:
+            data = json.load(f)
+            line = data['listings'][0]
 
-        data = data[1:]
-        with open(os.path.join(APP_ROOT, path), 'w+') as _f:
-            json.dump(data, _f)
+            data['listings'] = data['listings'][1:]
+            with open(os.path.join(APP_ROOT, path), 'w+') as _f:
+                json.dump(data, _f)
+
+    except:
+        pass
+
     return line
 
 
-def open_file_lines(path):
-    with open(os.path.join(APP_ROOT, path), "r") as f:
-        data = json.load(f)
-        return data
-
-
 def add_file_line(path, line):
-    with open('data.json', 'r') as f:
-        data = json.load(f)
-        data.insert(0, line)
+    try:
+        with open('data.json', 'r') as f:
+            data = json.load(f)
+            data['listings'].insert(0, line)
 
-    with open('data.json', 'w') as f:
-        json.dump(data, f)
-        return True
-
+        with open('data.json', 'w') as f:
+            json.dump(data, f)
+            return True
+    except:
+        return None
