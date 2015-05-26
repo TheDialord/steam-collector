@@ -33,6 +33,8 @@ class CheckingPriceThread(threading.Thread):
                     subtotal = int(float(withoutHtml.getText().split(' ')[0].replace(',', '.')) * 100)
                     fee = total - subtotal
 
+                    print 'Fetched # %s : %s' % (str(listingId), str(total))
+
                     if total <= item['preferredPrice']:
                         steammarket.add_listing(int(listingId), fee, subtotal)
 
