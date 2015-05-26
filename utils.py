@@ -23,11 +23,11 @@ def open_file_line(path):
 
 def add_file_line(path, line):
     try:
-        with open('data.json', 'r') as f:
+        with open(path, 'r') as f:
             data = json.load(f)
             data['listings'].insert(0, line)
 
-        with open('data.json', 'w') as f:
+        with open(path, 'w') as f:
             json.dump(data, f)
             return True
     except:
